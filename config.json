@@ -1,0 +1,12 @@
+{
+  "mac": {
+    "target": ["dmg"]
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis"
+      }
+    ]
+  }
+}
