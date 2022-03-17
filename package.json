@@ -1,7 +1,7 @@
 {
   "name": "ok",
   "private": true,
-  "version": "v1.1.0",
+  "version": "v1.3.0",
   "engines": {
     "node": ">=v16.13",
     "npm": ">=8.1"
@@ -14,9 +14,9 @@
     "build:main": "cd ./packages/main && vite build",
     "build:preload": "cd ./packages/preload && vite build",
     "build:renderer": "cd ./packages/renderer && vite build",
-    "compile": "cross-env MODE=production npm run build && electron-builder build --config .electron-builder.config.js --dir --config.asar=false",
+    "compile": "cross-env MODE=production npm run build && electron-builder build --config config.json --dir --config.asar=false",
     "b2": "electron-builder build --config config.json  --mac",
-    "publish": "electron-builder build --config config.json  --mac -p=onTag",
+    "release": "cross-env GH_TOKEN=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 electron-builder build --config config.json  --mac -p=always",
     "test": "npm run test:main && npm run test:preload && npm run test:renderer && npm run test:e2e",
     "test:e2e": "npm run build && vitest run",
     "test:main": "vitest run -r packages/main --passWithNoTests",
@@ -33,10 +33,11 @@
     "@typescript-eslint/eslint-plugin": "5.12.1",
     "@vitejs/plugin-vue": "2.2.2",
     "@vue/test-utils": "2.0.0-rc.18",
-    "cross-env": "7.0.3",
+    "cross-env": "^7.0.3",
     "electron": "17.1.0",
     "electron-builder": "22.14.13",
     "electron-devtools-installer": "3.2.0",
+    "electron-log": "^4.4.6",
     "eslint": "8.9.0",
     "eslint-plugin-vue": "8.5.0",
     "happy-dom": "2.41.0",

@@ -9,7 +9,7 @@ import ElectronVersions from '/@/components/ElectronVersions.vue';</script>
     src="../assets/logo.svg"
     width="150"
   >
-
+  v1.1.0
   <p>
     For a guide and recipes on how to configure / customize this project,<br>
     check out the

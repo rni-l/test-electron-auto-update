@@ -8,5 +8,12 @@
         "target": "nsis"
       }
     ]
-  }
+  },
+  "directories": {
+    "output": "dist",
+    "buildResources": "buildResources",
+  },
+  "files": [
+    "packages/**/dist/**",
+  ]
 }

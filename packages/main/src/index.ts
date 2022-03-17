@@ -1,6 +1,7 @@
 import {app} from 'electron';
 import './security-restrictions';
 import {restoreOrCreateWindow} from '/@/mainWindow';
+import log from 'electron-log';
 
 
 /**
@@ -59,10 +60,22 @@ if (import.meta.env.DEV) {
 /**
  * Check new app version in production mode only
  */
-if (import.meta.env.PROD) {
-  app.whenReady()
+// if (import.meta.env.PROD) {
+//   app.whenReady()
+//     .then(() => import('electron-updater'))
+//     .then(({autoUpdater}) => autoUpdater.checkForUpdatesAndNotify())
+//     .catch((e) => console.error('Failed check updates:', e));
+// }
+
+app.whenReady()
     .then(() => import('electron-updater'))
-    .then(({autoUpdater}) => autoUpdater.checkForUpdatesAndNotify())
+    .then(async ({autoUpdater}) => {
+      autoUpdater.logger = log;
+      // @ts-ignore
+      autoUpdater.logger.transports.file.level = 'info';
+      // log.info(autoUpdater);
+      const res = await autoUpdater.checkForUpdatesAndNotify();
+      log.info('res', res);
+    })
     .catch((e) => console.error('Failed check updates:', e));
-}
 
